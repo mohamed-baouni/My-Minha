@@ -1,11 +1,11 @@
 
 package dz.myminha.app
 
-import android.app.Activity
 import android.os.Bundle
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.webkit.WebChromeClient
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
@@ -22,10 +22,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 
 private val Green = Color(0xFF16834A)
-private val LightGreen = Color(0xFFEAF5EE)
-private val Red = Color(0xFFD83232)
 
-class MainActivity : Activity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -47,6 +45,7 @@ fun MyMinhaHome() {
             webView?.goBack()
         } else {
             selectedUrl = null
+            webView = null
         }
     }
 
