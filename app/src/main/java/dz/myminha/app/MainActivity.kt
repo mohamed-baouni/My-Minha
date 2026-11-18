@@ -24,6 +24,7 @@ private val Background = Color(0xFFF4F8F5)
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             MaterialTheme {
                 MyMinhaApp()
@@ -32,6 +33,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyMinhaApp() {
     var page by remember { mutableStateOf("home") }
@@ -49,10 +51,15 @@ fun MyMinhaApp() {
                 if (page != "home") {
                     TopAppBar(
                         title = {
-                            Text("My Minha", fontWeight = FontWeight.Bold)
+                            Text(
+                                "My Minha",
+                                fontWeight = FontWeight.Bold
+                            )
                         },
                         navigationIcon = {
-                            TextButton(onClick = { page = "home" }) {
+                            TextButton(
+                                onClick = { page = "home" }
+                            ) {
                                 Text("رجوع", color = Green)
                             }
                         },
@@ -63,11 +70,13 @@ fun MyMinhaApp() {
                 }
             }
         ) { padding ->
+
             when (page) {
                 "home" -> HomeScreen(
                     modifier = Modifier.padding(padding),
                     onNavigate = { page = it }
                 )
+
                 "minha" -> ServiceScreen(
                     modifier = Modifier.padding(padding),
                     title = "منحة البطالة",
@@ -79,6 +88,7 @@ fun MyMinhaApp() {
                         "متابعة المستجدات"
                     )
                 )
+
                 "wassit" -> ServiceScreen(
                     modifier = Modifier.padding(padding),
                     title = "فضاء وسيط",
@@ -90,6 +100,7 @@ fun MyMinhaApp() {
                         "معلومات الخدمات"
                     )
                 )
+
                 "profile" -> ServiceScreen(
                     modifier = Modifier.padding(padding),
                     title = "حسابي",
@@ -113,6 +124,7 @@ fun HomeScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
+            .background(Background)
             .padding(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -192,7 +204,10 @@ fun ServiceScreen(
 
         Spacer(Modifier.height(8.dp))
 
-        Text(description, color = Color.DarkGray)
+        Text(
+            description,
+            color = Color.DarkGray
+        )
 
         Spacer(Modifier.height(22.dp))
 
@@ -218,7 +233,7 @@ fun ServiceScreen(
         Spacer(Modifier.height(12.dp))
 
         Text(
-            "هذه واجهة أولية. سيتم إضافة الخدمات الفعلية بعد تجهيز مصادر البيانات والربط المصرح به.",
+            "هذه واجهة أولية. ستضاف الخدمات الفعلية بعد تجهيز مصادر البيانات والربط المصرح به.",
             color = Color.Gray,
             fontSize = 13.sp
         )
@@ -240,7 +255,9 @@ fun ServiceCard(
         ),
         elevation = CardDefaults.cardElevation(3.dp)
     ) {
-        Column(Modifier.padding(20.dp)) {
+        Column(
+            modifier = Modifier.padding(20.dp)
+        ) {
             Text(
                 title,
                 fontSize = 22.sp,
@@ -250,7 +267,10 @@ fun ServiceCard(
 
             Spacer(Modifier.height(8.dp))
 
-            Text(description, color = Color.DarkGray)
+            Text(
+                description,
+                color = Color.DarkGray
+            )
 
             Spacer(Modifier.height(15.dp))
 
